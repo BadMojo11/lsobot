@@ -1,7 +1,7 @@
 <# 
 ///////////////////////////////////////////////////// LSO BOT /////////////////////////////////////////////////////
 
-Version: 1.1.0 dev
+Version: 1.3.0
 
 Join the Discord: https://discord.gg/nr9xb6YJfw
 
@@ -514,6 +514,7 @@ for ($i = 1; $i -le $timeTarget; $i++) {
             ($Grade -match $SLOIC) -or 
             ($Grade -match $SLOAR) -or 
             ($Grade -match $SLOIW) -or
+            ($Grade -match $LNFIW) -or
             ($Grade -match $PPPIC)) {
                 Write-Output "$(Get-Timestamp) $info $lcReg Found grossly unsafe deviation. Grading pass as Cut." | Out-file $debugLog -append
                 $Grade = $Grade -replace $rGRADE, $CUT
@@ -560,6 +561,8 @@ for ($i = 1; $i -le $timeTarget; $i++) {
             ($Grade -match $LULAR) -or 
             ($Grade -match $LOAR) -or
             ($Grade -match $LOIW) -or
+            ($Grade -match $LLWDIW) -or
+            ($Grade -match $LRWDIW) -or
             ($Grade -match $WAR) -or 
             ($Grade -match $1WIRE) -or
             ($Grade -match $FIW)) {
@@ -820,7 +823,7 @@ for ($i = 1; $i -le $timeTarget; $i++) {
 
                 <# Update Google Sheets with LSO Grades - START #>
 
-                # Replace with Google web app url from google sheets wep app deployment
+                # Replace with Google web app url from google sheets web app deployment
                 $GoogleWebAppURL = 'INSERT_GOOGLE_WEB_APP_URL'
 
                 $Column1Name = 'Date/Time'
@@ -837,11 +840,14 @@ for ($i = 1; $i -le $timeTarget; $i++) {
 
                 $Column5Name = 'Points'
                 $Column5Value = $points
+                
+                $Column7Name = 'RawGradeFromAI'
+                $Column7Value = $RawGrade
 
-                $postParams = @{$Column1Name=$Column1Value;$Column2Name=$Column2Value;$Column3Name=$Column3Value;$Column4Name=$Column4Value;$Column5Name=$Column5Value}
+                $postParams = @{$Column1Name=$Column1Value;$Column2Name=$Column2Value;$Column3Name=$Column3Value;$Column4Name=$Column4Value;$Column5Name=$Column5Value;$Column7Name=$Column7Value}
                 Invoke-WebRequest -UseBasicParsing -Uri $GoogleWebAppURL -Method POST -Body $postParams
 
-                Write-Host `"$Column1Name=$Column1Value"&"$Column2Name=$Column2Value"&"$Column3Name=$Column3Value"&"$Column4Name=$Column4Value"&"$Column5Name=$Column5Value`"
+                Write-Host `"$Column1Name=$Column1Value"&"$Column2Name=$Column2Value"&"$Column3Name=$Column3Value"&"$Column4Name=$Column4Value"&"$Column5Name=$Column5Value"&"$Column7Name=$Column7Value`"
 
                 <# Update Google Sheets with LSO Grades - END #>
 
