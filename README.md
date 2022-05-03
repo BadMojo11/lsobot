@@ -59,6 +59,11 @@ LSO BOT by default will take grades and send them to Discord in a pretty embed m
 
 This feature can be turned off in the config file.
 
+## Send data to Google Sheets
+Inside the LsoBot.ps1 is code to send data to a google sheets document.  
+For this to work you will need to setup a sheet, use the code.gs file to create an appscript and deploy it as a webapp.
+Instructions are in the code.gs file.  You can comment out or remove the code in LsoBot.ps1 if you don't want to use this. 
+
 # Installation
 
 Review the [Installation](https://github.com/YoloWingPixie/lsobot/wiki/Installation-Guide) procedure in the wiki.
