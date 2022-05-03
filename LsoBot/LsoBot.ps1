@@ -514,7 +514,6 @@ for ($i = 1; $i -le $timeTarget; $i++) {
             ($Grade -match $SLOIC) -or 
             ($Grade -match $SLOAR) -or 
             ($Grade -match $SLOIW) -or
-            ($Grade -match $LNFIW) -or
             ($Grade -match $PPPIC)) {
                 Write-Output "$(Get-Timestamp) $info $lcReg Found grossly unsafe deviation. Grading pass as Cut." | Out-file $debugLog -append
                 $Grade = $Grade -replace $rGRADE, $CUT
@@ -561,8 +560,6 @@ for ($i = 1; $i -le $timeTarget; $i++) {
             ($Grade -match $LULAR) -or 
             ($Grade -match $LOAR) -or
             ($Grade -match $LOIW) -or
-            ($Grade -match $LLWDIW) -or
-            ($Grade -match $LRWDIW) -or
             ($Grade -match $WAR) -or 
             ($Grade -match $1WIRE) -or
             ($Grade -match $FIW)) {
